@@ -51,64 +51,68 @@ export default function Page() {
   }
 
   return (
-    <main>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
+    <main className={styles.main}>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <div className={styles.inputContainer}>
           <label htmlFor='annualRevenue'>Receita Bruta em 12 meses</label>
           <input id='annualRevenue' {...register('annualRevenue')}></input>
         </div>
-        <div>
+        <div className={styles.inputContainer}>
           <label htmlFor='revenue'>Faturamento</label>
           <input id='revenue' {...register('revenue')}></input>
         </div>
-        <button type='submit'>Submit</button>
+        <button type='submit' className={styles.button}>
+          Submit
+        </button>
       </form>
       {result && (
-        <table>
-          <tr>
-            <td>Faixa</td>
-            <td>{result.rangeIndex}</td>
-          </tr>
-          <tr>
-            <td>Aliquota Nominal</td>
-            <td>{result.nominalRate}%</td>
-          </tr>
-          <tr>
-            <td>Dedução</td>
-            <td>R${result.deduction}</td>
-          </tr>
-          <tr>
-            <td>Aliquota Efetiva</td>
-            <td>{(result.effectiveRate * 100).toFixed(2)}%</td>
-          </tr>
-          <tr>
-            <td>IRPJ</td>
-            <td>{result['IRPJ'].toFixed(2)}%</td>
-          </tr>
-          <tr>
-            <td>CSLL</td>
-            <td>{result['CSLL'].toFixed(2)}%</td>
-          </tr>
-          <tr>
-            <td>COFINS</td>
-            <td>{result['COFINS'].toFixed(2)}%</td>
-          </tr>
-          <tr>
-            <td>CPP</td>
-            <td>{result['CPP'].toFixed(2)}%</td>
-          </tr>
-          <tr>
-            <td>PIS</td>
-            <td>{result['PIS'].toFixed(2)}%</td>
-          </tr>
-          <tr>
-            <td>ICMS</td>
-            <td>{result['ICMS'].toFixed(2)}%</td>
-          </tr>
-          <tr>
-            <td>Imposto a pagar</td>
-            <td>R${result.tax.toFixed(2)}</td>
-          </tr>
+        <table className={styles.table}>
+          <tbody>
+            <tr>
+              <td>Faixa</td>
+              <td>{result.rangeIndex}</td>
+            </tr>
+            <tr>
+              <td>Aliquota Nominal</td>
+              <td>{result.nominalRate}%</td>
+            </tr>
+            <tr>
+              <td>Dedução</td>
+              <td>R${result.deduction}</td>
+            </tr>
+            <tr>
+              <td>Aliquota Efetiva</td>
+              <td>{(result.effectiveRate * 100).toFixed(2)}%</td>
+            </tr>
+            <tr>
+              <td>IRPJ</td>
+              <td>{result['IRPJ'].toFixed(2)}%</td>
+            </tr>
+            <tr>
+              <td>CSLL</td>
+              <td>{result['CSLL'].toFixed(2)}%</td>
+            </tr>
+            <tr>
+              <td>COFINS</td>
+              <td>{result['COFINS'].toFixed(2)}%</td>
+            </tr>
+            <tr>
+              <td>CPP</td>
+              <td>{result['CPP'].toFixed(2)}%</td>
+            </tr>
+            <tr>
+              <td>PIS</td>
+              <td>{result['PIS'].toFixed(2)}%</td>
+            </tr>
+            <tr>
+              <td>ICMS</td>
+              <td>{result['ICMS'].toFixed(2)}%</td>
+            </tr>
+            <tr>
+              <td>Imposto a pagar</td>
+              <td>R${result.tax.toFixed(2)}</td>
+            </tr>
+          </tbody>
         </table>
       )}
     </main>
