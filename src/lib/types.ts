@@ -1,16 +1,16 @@
 type Taxes = {
+  rangeIndex: 1 | 2 | 3 | 4 | 5 | 6
   nominalRate: number
   deduction: number
-  'IRPJ': number
-  'CSLL': number
-  'COFINS': number
-  'PIS': number
-  'CPP': number
-  'ICMS': number
+  IRPJ: number
+  CSLL: number
+  COFINS: number
+  PIS: number
+  CPP: number
+  ICMS: number
 }
 
 export type Range = {
-  range: 1 | 2 | 3 | 4 | 5 | 6
   rBT12: number
 } & Taxes
 

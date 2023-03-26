@@ -21,11 +21,14 @@ export default function Page() {
     const annualRevenue = +data.annualRevenue
     const revenue = +data.revenue
 
+    if (!annualRevenue) return
+    if (!revenue) return
+
     const range = ranges.find(({ rBT12 }) => annualRevenue <= rBT12)
 
     if (!range) throw new Error('rBT12 is outside of any range')
 
-    const { nominalRate, deduction } = range
+    const { nominalRate, deduction, rangeIndex } = range
 
     const effectiveRate = ((annualRevenue * nominalRate) / 100 - deduction) / annualRevenue
 
@@ -34,6 +37,7 @@ export default function Page() {
       nominalRate,
       deduction,
       effectiveRate,
+      rangeIndex,
       tax: effectiveRate * revenue,
       IRPJ: effectiveRate * range['IRPJ'],
       CSLL: effectiveRate * range['CSLL'],
@@ -47,7 +51,7 @@ export default function Page() {
   }
 
   return (
-    <div>
+    <main>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label htmlFor='annualRevenue'>Receita Bruta em 12 meses</label>
@@ -59,18 +63,54 @@ export default function Page() {
         </div>
         <button type='submit'>Submit</button>
       </form>
-      <div>
-        <p>Aliquota Nominal: {result?.nominalRate.toFixed(4)}%</p>
-        <p>Dedução: {result?.deduction.toFixed(4)}</p>
-        <p>Aliquota Efetiva: {result?.effectiveRate.toFixed(4)}</p>
-        <p>IRPJ: {result?.['IRPJ'].toFixed(4)}</p>
-        <p>CSLL: {result?.['CSLL'].toFixed(4)}</p>
-        <p>COFINS: {result?.['COFINS'].toFixed(4)}</p>
-        <p>CPP: {result?.['CPP'].toFixed(4)}</p>
-        <p>PIS: {result?.['PIS'].toFixed(4)}</p>
-        <p>ICMS: {result?.['ICMS'].toFixed(4)}</p>
-        <p>Imposto a pagar: {result?.tax.toFixed(2)}</p>
-      </div>
-    </div>
+      {result && (
+        <table>
+          <tr>
+            <td>Faixa</td>
+            <td>{result.rangeIndex}</td>
+          </tr>
+          <tr>
+            <td>Aliquota Nominal</td>
+            <td>{result.nominalRate}%</td>
+          </tr>
+          <tr>
+            <td>Dedução</td>
+            <td>R${result.deduction}</td>
+          </tr>
+          <tr>
+            <td>Aliquota Efetiva</td>
+            <td>{(result.effectiveRate * 100).toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td>IRPJ</td>
+            <td>{result['IRPJ'].toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td>CSLL</td>
+            <td>{result['CSLL'].toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td>COFINS</td>
+            <td>{result['COFINS'].toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td>CPP</td>
+            <td>{result['CPP'].toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td>PIS</td>
+            <td>{result['PIS'].toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td>ICMS</td>
+            <td>{result['ICMS'].toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td>Imposto a pagar</td>
+            <td>R${result.tax.toFixed(2)}</td>
+          </tr>
+        </table>
+      )}
+    </main>
   )
 }
