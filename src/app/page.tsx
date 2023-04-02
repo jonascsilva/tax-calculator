@@ -24,7 +24,7 @@ export default function Page() {
     if (!annualRevenue) return
     if (!revenue) return
 
-    const range = ranges.find(({ rBT12 }) => annualRevenue <= rBT12)
+    const range = ranges.find(({ rBT12 }) => annualRevenue < rBT12 + 1)
 
     if (!range) throw new Error('rBT12 is outside of any range')
 
