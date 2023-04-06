@@ -15,10 +15,12 @@ export default function Page() {
   const [result, setResult] = useState<Result | null>(null)
 
   return (
-    <main className={styles.main}>
+    <main className={styles.root}>
       <MemoThemeButton />
-      <Form setResult={setResult} />
-      {result && <Table result={result} />}
+      <section>
+        <Form setResult={setResult} />
+        {result && <Table result={result} />}
+      </section>
     </main>
   )
 }
