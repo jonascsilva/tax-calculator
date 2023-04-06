@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { ranges } from '@/lib/ranges'
-import { Result } from '@/lib/types'
+import { FormData, Result } from '@/lib/types'
 
 import { FormField } from '../FormField/FormField'
 import styles from './styles.module.scss'
@@ -47,8 +47,8 @@ export function Form({ setResult }: Props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.root}>
-      <FormField id={'annualRevenue'} label='Receita Bruta em 12 meses' register={register} />
-      <FormField id={'revenue'} label='Faturamento' register={register} />
+      <FormField id={'annualRevenue'} label='Receita Bruta em 12 meses' placeholder='3.600.000' register={register} />
+      <FormField id={'revenue'} label='Faturamento (Mensal)' placeholder='25.000' register={register} />
       <button type='submit' className={styles.button}>
         Submit
       </button>
