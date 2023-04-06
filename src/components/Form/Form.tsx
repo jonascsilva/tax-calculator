@@ -1,5 +1,7 @@
+import { yupResolver } from '@hookform/resolvers/yup'
 import { Dispatch, SetStateAction } from 'react'
 import { useForm } from 'react-hook-form'
+import { number, object, NumberSchema } from 'yup'
 
 import { ranges } from '@/lib/ranges'
 import { FormData, Result } from '@/lib/types'
@@ -10,8 +12,22 @@ import styles from './styles.module.scss'
 
 type Props = { setResult: Dispatch<SetStateAction<Result | null>> }
 
+const numberSchema = number()
+  .positive('Deve ser positivo')
+  .required('Campo obrigatório')
+  .lessThan(4_800_001, 'Deve ser menor que 4800001')
+
+const schema = object({
+  revenue: numberSchema,
+  annualRevenue: numberSchema
+} as { revenue: NumberSchema; annualRevenue: NumberSchema }).required()
+
 export function Form({ setResult }: Props) {
-  const { register, handleSubmit } = useForm<FormData>()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FormData>({ resolver: yupResolver(schema) })
 
   const onSubmit = ({ annualRevenue, revenue }: FormData) => {
     const range = ranges.find(({ rBT12 }) => annualRevenue < rBT12 + 1)
@@ -42,8 +58,14 @@ export function Form({ setResult }: Props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.root}>
-      <FormField id={'annualRevenue'} label='Receita Bruta em 12 meses' placeholder='3.600.000' register={register} />
-      <FormField id={'revenue'} label='Faturamento (Mensal)' placeholder='25.000' register={register} />
+      <FormField
+        id={'annualRevenue'}
+        label='Receita Bruta em 12 meses'
+        placeholder='3600000'
+        errors={errors}
+        register={register}
+      />
+      <FormField id={'revenue'} label='Faturamento (Mensal)' placeholder='25000' errors={errors} register={register} />
       <FormButton />
     </form>
   )

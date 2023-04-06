@@ -1,4 +1,4 @@
-import { UseFormRegister } from 'react-hook-form'
+import { FieldErrors, UseFormRegister } from 'react-hook-form'
 
 import { FormData } from '@/lib/types'
 
@@ -8,10 +8,11 @@ type Props = {
   id: keyof FormData
   label: string
   placeholder: string
+  errors: FieldErrors<FormData>
   register: UseFormRegister<FormData>
 }
 
-export function FormField({ id, label, placeholder, register }: Props) {
+export function FormField({ id, label, placeholder, errors, register }: Props) {
   return (
     <div className={styles.root}>
       <label htmlFor={id}>{label}</label>
@@ -25,7 +26,8 @@ export function FormField({ id, label, placeholder, register }: Props) {
           required: true,
           valueAsNumber: true
         })}
-      ></input>
+      />
+      <p>{errors[id]?.type !== 'typeError' && errors[id]?.message}</p>
     </div>
   )
 }
