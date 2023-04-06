@@ -1,5 +1,7 @@
+@use '@/styles/variables' as vars;
+
 .root {
-  background-color: #343a40;
+  background-color: vars.$gray-1;
   border: 0;
   display: flex;
   justify-content: center;

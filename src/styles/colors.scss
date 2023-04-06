@@ -1,0 +1,19 @@
+html[data-theme='dark'] {
+  // --background-color: #101113;
+
+  --gray-1: #343a40;
+
+  --red-1: #e03131;
+
+  --green-1: #2f9e44;
+}
+
+html[data-theme='light'] {
+  --background-color: #f1f3f5;
+
+  --gray-1: #ced4da;
+
+  --red-1: #fa5252;
+
+  --green-1: #51cf66;
+}
