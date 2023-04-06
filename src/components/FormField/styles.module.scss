@@ -1,0 +1,12 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+
+  input {
+    padding: 0.5rem 0.7rem;
+    border: none;
+    border-radius: 0.4rem;
+  }
+}

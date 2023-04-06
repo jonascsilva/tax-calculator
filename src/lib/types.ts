@@ -19,3 +19,8 @@ export type Result = {
   effectiveRate: number
   tax: number
 } & Taxes
+
+export type FormData = {
+  annualRevenue: string
+  revenue: string
+}
