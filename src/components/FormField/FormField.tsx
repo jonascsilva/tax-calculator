@@ -15,7 +15,7 @@ export function FormField({ id, label, placeholder, register }: Props) {
   return (
     <div className={styles.root}>
       <label htmlFor={id}>{label}</label>
-      <input className={styles.input} id={id} placeholder={placeholder} {...register(id)}></input>
+      <input className={styles.input} autoComplete="off" id={id} placeholder={placeholder} {...register(id)}></input>
     </div>
   )
 }
