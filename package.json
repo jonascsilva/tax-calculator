@@ -10,6 +10,7 @@
     "fmt": "prettier --write ."
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.0.1",
     "@types/node": "18.15.3",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
@@ -21,7 +22,8 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.8",
     "react-icons": "^4.8.0",
-    "typescript": "5.0.2"
+    "typescript": "5.0.2",
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
