@@ -1,0 +1,15 @@
+.root {
+  background-color: #343a40;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.4rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.4rem;
+}
+
+.root:not(:disabled) {
+  cursor: pointer;
+}

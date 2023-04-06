@@ -4,6 +4,7 @@ import { useState } from 'react'
 
 import { Form } from '@/components/Form/Form'
 import { Table } from '@/components/Table/Table'
+import { ThemeButton } from '@/components/ThemeButton/ThemeButton'
 import { Result } from '@/lib/types'
 
 import styles from './page.module.scss'
@@ -13,6 +14,7 @@ export default function Page() {
 
   return (
     <main className={styles.main}>
+      <ThemeButton />
       <Form setResult={setResult} />
       {result && <Table result={result} />}
     </main>
