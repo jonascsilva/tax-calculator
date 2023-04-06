@@ -13,13 +13,7 @@ type Props = { setResult: Dispatch<SetStateAction<Result | null>> }
 export function Form({ setResult }: Props) {
   const { register, handleSubmit } = useForm<FormData>()
 
-  const onSubmit = (data: FormData) => {
-    const annualRevenue = +data.annualRevenue
-    const revenue = +data.revenue
-
-    if (!annualRevenue) return
-    if (!revenue) return
-
+  const onSubmit = ({ annualRevenue, revenue }: FormData) => {
     const range = ranges.find(({ rBT12 }) => annualRevenue < rBT12 + 1)
 
     if (!range) throw new Error('rBT12 is outside of any range')

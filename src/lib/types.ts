@@ -21,6 +21,6 @@ export type Result = {
 } & Taxes
 
 export type FormData = {
-  annualRevenue: string
-  revenue: string
+  annualRevenue: number
+  revenue: number
 }
