@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useState, memo } from 'react'
 
 import { Form } from '@/components/Form/Form'
@@ -16,7 +17,11 @@ export default function Page() {
 
   return (
     <main className={styles.root}>
-      <MemoThemeButton />
+      <header className={styles.header}>
+        <Link href='/table'>Tabela</Link>
+        <MemoThemeButton />
+        <Link href='/about'>Sobre</Link>
+      </header>
       <section>
         <Form setResult={setResult} />
         {result && <Table result={result} />}
