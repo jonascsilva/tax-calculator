@@ -3,8 +3,7 @@ import { Dispatch, SetStateAction } from 'react'
 import { useForm } from 'react-hook-form'
 import { number, object, NumberSchema } from 'yup'
 
-import { ranges } from '@/lib/ranges'
-import { FormData, Result } from '@/lib/types'
+import { FormData, Result, Range } from '@/lib/types'
 
 import { FormButton } from '../FormButton/FormButton'
 import { FormField } from '../FormField/FormField'
@@ -29,7 +28,11 @@ export function Form({ setResult }: Props) {
     formState: { errors }
   } = useForm<FormData>({ resolver: yupResolver(schema) })
 
-  const onSubmit = ({ annualRevenue, revenue }: FormData) => {
+  const onSubmit = async ({ annualRevenue, revenue }: FormData) => {
+    const response = await fetch('https://tax-calculator-q87ez1c2q58g.deno.dev/teste')
+
+    const ranges: Range[] = await response.json()
+
     const range = ranges.find(({ rBT12 }) => annualRevenue < rBT12 + 1)
 
     if (!range) throw new Error('rBT12 is outside of any range')
