@@ -12,7 +12,7 @@ type Props = {
   register: UseFormRegister<FormData>
 }
 
-export function FormField({ id, label, placeholder, errors, register }: Props) {
+export default function Component({ id, label, placeholder, errors, register }: Props) {
   return (
     <div className={styles.root}>
       <label htmlFor={id}>{label}</label>

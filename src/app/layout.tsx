@@ -1,7 +1,7 @@
 import { Inter } from 'next/font/google'
 import { ReactNode } from 'react'
 
-import Header from '@/components/Header'
+import Header from '@/components/header'
 import '@/styles/colors.scss'
 import '@/styles/globals.scss'
 

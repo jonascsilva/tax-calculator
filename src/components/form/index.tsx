@@ -6,11 +6,11 @@ import { useForm } from 'react-hook-form'
 import MoonLoader from 'react-spinners/MoonLoader'
 import { number, object, NumberSchema } from 'yup'
 
+import FormButton from '@/components/form-button'
+import FormField from '@/components/form-field'
+import Table from '@/components/table'
 import { FormData, Range, Result } from '@/lib/types'
 
-import { FormButton } from '../FormButton/FormButton'
-import { FormField } from '../FormField/FormField'
-import { Table } from '../Table/Table'
 import styles from './styles.module.scss'
 
 const numberSchema = number()
@@ -23,7 +23,7 @@ const schema = object({
   annualRevenue: numberSchema
 } as { revenue: NumberSchema; annualRevenue: NumberSchema }).required()
 
-export function Form() {
+export default function Component() {
   const [result, setResult] = useState<Result | null>(null)
   const {
     register,

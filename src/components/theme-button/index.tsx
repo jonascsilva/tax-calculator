@@ -6,7 +6,7 @@ import { MdDarkMode, MdLightMode } from 'react-icons/md'
 
 import styles from './styles.module.scss'
 
-export function ThemeButton() {
+export default function Component() {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
 

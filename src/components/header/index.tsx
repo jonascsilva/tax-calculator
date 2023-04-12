@@ -3,7 +3,8 @@
 import Link from 'next/link'
 import { useSelectedLayoutSegment } from 'next/navigation'
 
-import { ThemeButton } from '../ThemeButton/ThemeButton'
+import ThemeButton from '@/components/theme-button'
+
 import styles from './styles.module.scss'
 
 const indexLink = { linkUrl: '/', linkName: 'Home' }

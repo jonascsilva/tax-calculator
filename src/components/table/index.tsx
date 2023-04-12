@@ -2,7 +2,7 @@ import { Result } from '@/lib/types'
 
 import styles from './styles.module.scss'
 
-export function Table({ result }: { result: Result }) {
+export default function Component({ result }: { result: Result }) {
   return (
     <table className={styles.root}>
       <tbody>
