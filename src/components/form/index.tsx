@@ -1,6 +1,7 @@
 'use client'
 
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useTheme } from 'next-themes'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import MoonLoader from 'react-spinners/MoonLoader'
@@ -25,6 +26,7 @@ const schema = object({
 
 export default function Component() {
   const [result, setResult] = useState<Result | null>(null)
+  const { theme } = useTheme()
   const {
     register,
     handleSubmit,
@@ -88,7 +90,7 @@ export default function Component() {
           {result && <Table result={result} />}
         </>
       ) : (
-        <MoonLoader speedMultiplier={0.7} size={120} color='white' />
+        <MoonLoader speedMultiplier={0.7} size={100} color={theme === 'dark' ? 'white' : 'black'} />
       )}
     </main>
   )
