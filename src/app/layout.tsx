@@ -1,8 +1,9 @@
 import { Inter } from 'next/font/google'
 import { ReactNode } from 'react'
 
-import '@/styles/globals.scss'
+import Header from '@/components/Header'
 import '@/styles/colors.scss'
+import '@/styles/globals.scss'
 
 import { Providers } from './providers'
 
@@ -18,7 +19,10 @@ export default function Layout({ children }: { children: ReactNode }) {
     <html lang='en' className={inter.className} suppressHydrationWarning>
       <head />
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   )

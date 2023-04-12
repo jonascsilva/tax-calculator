@@ -1,6 +1,10 @@
 @use '@/styles/variables' as vars;
 
 .root {
+  padding: 2rem 2rem 0rem 2rem;
+}
+
+.nav {
   display: flex;
   align-items: center;
   justify-content: space-around;

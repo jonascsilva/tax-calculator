@@ -65,10 +65,10 @@ export function Form() {
   }
 
   return (
-    <section>
+    <main className={styles.root}>
       {!isSubmitting ? (
         <>
-          <form onSubmit={handleSubmit(onSubmit)} className={styles.root}>
+          <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
             <FormField
               id={'annualRevenue'}
               label='Receita Bruta em 12 meses'
@@ -90,6 +90,6 @@ export function Form() {
       ) : (
         <MoonLoader speedMultiplier={0.7} size={120} color='white' />
       )}
-    </section>
+    </main>
   )
 }

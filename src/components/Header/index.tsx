@@ -1,21 +1,33 @@
+'use client'
+
 import Link from 'next/link'
+import { useSelectedLayoutSegment } from 'next/navigation'
 
 import { ThemeButton } from '../ThemeButton/ThemeButton'
 import styles from './styles.module.scss'
 
-type Link = {
-  name: string
-  url: string
+const indexLink = { linkUrl: '/', linkName: 'Home' }
+const tableLink = { linkUrl: '/table', linkName: 'Tabelas' }
+const aboutLink = { linkUrl: '/about', linkName: 'Sobre' }
+
+const allLinks = {
+  '(index)': [tableLink, aboutLink],
+  table: [indexLink, aboutLink],
+  about: [indexLink, tableLink]
 }
 
-type Props = { links: [Link, Link] }
+export default function Component() {
+  const segment = useSelectedLayoutSegment() as keyof typeof allLinks
 
-export default function Component({ links }: Props) {
+  let links = allLinks[segment]
+
   return (
     <header className={styles.root}>
-      <Link href={links[0].url}>{links[0].name}</Link>
-      <ThemeButton />
-      <Link href={links[1].url}>{links[1].name}</Link>
+      <nav className={styles.nav}>
+        <Link href={links[0].linkUrl}>{links[0].linkName}</Link>
+        <ThemeButton />
+        <Link href={links[1].linkUrl}>{links[1].linkName}</Link>
+      </nav>
     </header>
   )
 }

@@ -1,9 +1,5 @@
 .root {
   padding: 2rem;
-}
-
-.section {
-  padding: 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, max(22rem));
   justify-content: center;
