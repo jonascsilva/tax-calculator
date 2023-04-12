@@ -1,0 +1,18 @@
+.root {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, max(22rem));
+  justify-content: space-between;
+  gap: 4rem;
+
+  tbody:before {
+    content: '';
+    display: block;
+    height: 1rem;
+    visibility: hidden;
+  }
+  
+  td:last-child {
+    text-align: right;
+  }
+}
