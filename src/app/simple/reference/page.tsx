@@ -1,4 +1,4 @@
-import { Range } from '@/lib/types'
+import { Range } from '@/utils/types'
 
 import styles from './styles.module.scss'
 

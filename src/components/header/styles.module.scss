@@ -1,7 +1,11 @@
 @use '@/styles/variables' as vars;
 
-.root {
+.header {
   padding: 2rem 2rem 0rem 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 1.5rem;
 }
 
 .nav {
@@ -13,8 +17,31 @@
   border-radius: 0.5rem;
   padding: 0.8rem;
 
+  &:last-child {
+    width: 50%;
+  }
+}
+
+.button {
+  border-radius: 0.4rem;
+  border: none;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
   a {
-    width: 10rem;
-    text-align: center;
+    padding: 0.6rem 0.8rem;
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.active {
+  background-color: rgb(43, 43, 43);
+
+  a {
+    color: white;
   }
 }

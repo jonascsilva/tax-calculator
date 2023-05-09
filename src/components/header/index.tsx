@@ -1,33 +1,33 @@
 'use client'
 
 import Link from 'next/link'
-import { useSelectedLayoutSegment } from 'next/navigation'
+import { useSelectedLayoutSegments } from 'next/navigation'
 
 import ThemeButton from '@/components/theme-button'
 
 import styles from './styles.module.scss'
 
-const indexLink = { linkUrl: '/', linkName: 'Home' }
-const tableLink = { linkUrl: '/table', linkName: 'Tabelas' }
-const aboutLink = { linkUrl: '/about', linkName: 'Sobre' }
-
-const allLinks = {
-  '(index)': [tableLink, aboutLink],
-  table: [indexLink, aboutLink],
-  about: [indexLink, tableLink]
-}
-
 export default function Component() {
-  const segment = useSelectedLayoutSegment() as keyof typeof allLinks
-
-  let links = allLinks[segment]
+  const segments = useSelectedLayoutSegments()
 
   return (
-    <header className={styles.root}>
+    <header className={styles.header}>
       <nav className={styles.nav}>
-        <Link href={links[0].linkUrl}>{links[0].linkName}</Link>
+        <button className={[styles.button, segments[0] === 'simple' ? styles.active : undefined].join(' ')}>
+          <Link href={'/simple'}>Simples</Link>
+        </button>
         <ThemeButton />
-        <Link href={links[1].linkUrl}>{links[1].linkName}</Link>
+        <button className={[styles.button, segments[0] === 'complex' ? styles.active : undefined].join(' ')}>
+          <Link href={'/complex'}>Complexo</Link>
+        </button>
+      </nav>
+      <nav className={styles.nav}>
+        <button className={[styles.button, segments[1] ? undefined : styles.active].join(' ')}>
+          <Link href={`/${segments[0]}`}>Calculadora</Link>
+        </button>
+        <button className={[styles.button, segments[1] === 'reference' ? styles.active : undefined].join(' ')}>
+          <Link href={`/${segments[0]}/reference`}>Referência</Link>
+        </button>
       </nav>
     </header>
   )
