@@ -9,8 +9,8 @@ import { number, object, NumberSchema } from 'yup'
 
 import FormButton from '@/components/form-button'
 import FormField from '@/components/form-field'
-import Table from '@/components/table'
-import { FormData, Range, Result } from '@/lib/types'
+import Table from '@/app/simple/_form/_table'
+import { FormDataSimple, Range, ResultSimple } from '@/utils/types'
 
 import styles from './styles.module.scss'
 
@@ -25,20 +25,18 @@ const schema = object({
 } as { revenue: NumberSchema; annualRevenue: NumberSchema }).required()
 
 export default function Component() {
-  const [result, setResult] = useState<Result | null>(null)
+  const [result, setResult] = useState<ResultSimple | null>(null)
   const { theme } = useTheme()
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting }
-  } = useForm<FormData>({ resolver: yupResolver(schema) })
+  } = useForm<FormDataSimple>({ resolver: yupResolver(schema) })
 
-  const onSubmit = async ({ annualRevenue, revenue }: FormData) => {
+  const onSubmit = async ({ annualRevenue, revenue }: FormDataSimple) => {
     const response = await fetch('https://tax-calculator-q87ez1c2q58g.deno.dev/teste')
 
     const ranges: Range[] = await response.json()
-
-    // await new Promise(r => setTimeout(r, 5000))
 
     const range = ranges.find(({ rBT12 }) => annualRevenue < rBT12 + 1)
 

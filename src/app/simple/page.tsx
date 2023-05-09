@@ -1,4 +1,4 @@
-import Form from '@/components/form'
+import Form from './_form'
 
 export default function Page() {
   return <Form />

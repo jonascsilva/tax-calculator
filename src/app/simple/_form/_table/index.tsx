@@ -1,8 +1,8 @@
-import { Result } from '@/lib/types'
+import { ResultSimple } from '@/utils/types'
 
 import styles from './styles.module.scss'
 
-export default function Component({ result }: { result: Result }) {
+export default function Component({ result }: { result: ResultSimple }) {
   return (
     <table className={styles.root}>
       <tbody>

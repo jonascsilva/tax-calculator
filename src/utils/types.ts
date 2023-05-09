@@ -14,13 +14,22 @@ export type Range = {
   rBT12: number
 } & Taxes
 
-export type Result = {
+export type ResultSimple = {
   revenue: number
   effectiveRate: number
   tax: number
 } & Taxes
 
-export type FormData = {
+export type FormDataSimple = {
   annualRevenue: number
   revenue: number
+}
+
+export type FormDataComplex = {
+  revenue: number
+  cost: number
+}
+
+export type ResultComplex = {
+  [key: string]: number
 }

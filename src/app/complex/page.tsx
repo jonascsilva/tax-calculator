@@ -1,3 +1,5 @@
+import Form from './_form'
+
 export default function Page() {
-  return <h1>Complex calculator</h1>
+  return <Form />
 }

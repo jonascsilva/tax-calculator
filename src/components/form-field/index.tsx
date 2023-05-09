@@ -1,15 +1,15 @@
 import { FieldErrors, UseFormRegister } from 'react-hook-form'
 
-import { FormData } from '@/lib/types'
+// import { FormDataSimple } from '@/utils/types'
 
 import styles from './styles.module.scss'
 
 type Props = {
-  id: keyof FormData
+  id: /* keyof any */ any
   label: string
   placeholder: string
-  errors: FieldErrors<FormData>
-  register: UseFormRegister<FormData>
+  errors: FieldErrors<any>
+  register: UseFormRegister<any>
 }
 
 export default function Component({ id, label, placeholder, errors, register }: Props) {
@@ -27,7 +27,7 @@ export default function Component({ id, label, placeholder, errors, register }: 
           valueAsNumber: true
         })}
       />
-      <p>{errors[id]?.type !== 'typeError' && errors[id]?.message}</p>
+      {/* <p>{errors[id]?.type !== 'typeError' && errors[id]?.message}</p> */}
     </div>
   )
 }
