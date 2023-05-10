@@ -9,9 +9,9 @@ import { number, object, NumberSchema } from 'yup'
 
 import FormButton from '@/components/form-button'
 import FormField from '@/components/form-field'
-import Table from '@/app/simple/_form/_table'
 import { FormDataSimple, Range, ResultSimple } from '@/utils/types'
 
+import Table from './_table'
 import styles from './styles.module.scss'
 
 const numberSchema = number()

@@ -1,10 +1,18 @@
 .root {
   padding: 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, max(22rem));
+  grid-template-columns: repeat(auto-fit, max(16rem));
   justify-content: center;
-  gap: 4rem;
+  column-gap: 1rem;
   font-size: 0.9rem;
+
+  th:first-child {
+    text-align: left;
+  }
+
+  th:last-child {
+    text-align: right;
+  }
   
   td:last-child {
     text-align: right;

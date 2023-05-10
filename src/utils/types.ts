@@ -31,5 +31,10 @@ export type FormDataComplex = {
 }
 
 export type ResultComplex = {
-  [key: string]: number
+  ICMS: number
+  PIS: number
+  COFINS: number
+  CSLL: number
+  IRPJ: number
+  revenue: number
 }

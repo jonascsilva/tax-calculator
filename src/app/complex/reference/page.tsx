@@ -12,6 +12,10 @@ export default async function Page() {
         </thead>
         <tbody>
           <tr>
+            <td>ICMS</td>
+            <td>17%</td>
+          </tr>
+          <tr>
             <td>PIS</td>
             <td>1.65%</td>
           </tr>

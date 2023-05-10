@@ -31,15 +31,15 @@ export default function Component() {
   } = useForm<FormDataComplex>({ resolver: yupResolver(schema) })
 
   const onSubmit = async ({ revenue, cost }: FormDataComplex) => {
-    await new Promise(r => setTimeout(r, 1000))
+    await new Promise(r => setTimeout(r, 400))
 
     setResult({
-      ICMS: 14_450_000,
-      PIS: 1_402_500,
-      COFINS: 6_460_000,
-      CSLL: 5_633_370.0,
-      IRPJ: 9_388_950_00,
-      revenue: 42_837_612.0
+      ICMS: revenue * 0.17, // 14_450_000
+      PIS: revenue * 0.0165, // 1_402_500
+      COFINS: revenue * 0.076, // 6_460_000
+      CSLL: revenue * 0.09, // 5_633_370 ???
+      IRPJ: revenue * 0.15, // 9_388_950 ???
+      revenue: revenue * 0.5025 // 42_837_612 ???
     })
   }
 
