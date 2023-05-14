@@ -25,3 +25,30 @@ Canvas: [Canvas](https://www.canva.com/design/DAFetwcjUuE/xP5Nq89P-g_viNyDR7kcDA
 Link do Mockup no Figma: [Figma](https://www.figma.com/file/b858TyEGnkO3Y6PymonFtk/Untitled?node-id=0%3A1&t=oqioCtZku9452n1a-1)
 
 À medida que foi falado com os clientes ele nos pediram um sistema que calculasse os impostos com base na tabela do Excel que nos foi enviada: [Requisitos Iniciais do Cliente](https://catolicasc-my.sharepoint.com/:x:/g/personal/pedro_procopio_catolicasc_edu_br/EYPCfILECpZNlezYuj2eKYYBiatYiFAT2Hf5u80B8C_ngA?e=TjJLrJ)
+
+# Sobre o projeto
+
+Este projeto é um site que usa o Nextjs, um framework React que permite a renderização híbrida de páginas estáticas e dinâmicas. O Nextjs também oferece recursos como roteamento, pré-busca de dados, otimização de código e suporte a API.
+
+O projeto também usa o Typescript, uma linguagem que adiciona tipagem estática ao Javascript, facilitando a detecção de erros e a manutenção do código. O Typescript também permite o uso de recursos mais modernos do Javascript, como classes, módulos e decoradores.
+
+Além disso, o projeto usa o Sass, um pré-processador CSS que permite escrever estilos mais organizados, reutilizáveis e modulares. O Sass também oferece recursos como variáveis, mixins, funções e herança.
+
+## Execução
+
+Para executar o projeto em modo de desenvolvimento, primeiramente é necessário instalar as dependências;
+
+Para instalar as dependências do projeto, execute o seguinte comando na pasta raiz:
+
+```bash
+pnpm install
+```
+
+Depois execute o seguinte comando na pasta raiz:
+
+
+```bash
+pnpm dev
+```
+
+O site ficará disponível no endereço http://localhost:3000.
