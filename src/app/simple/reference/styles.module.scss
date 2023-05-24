@@ -1,7 +1,7 @@
 .root {
     padding: 2rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, max(22rem));
+    grid-template-columns: repeat(auto-fit, min(100%, 22rem));
     justify-content: center;
     gap: 4rem;
     font-size: 0.9rem;

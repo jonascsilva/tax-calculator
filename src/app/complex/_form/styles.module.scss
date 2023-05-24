@@ -7,6 +7,8 @@
   justify-content: space-evenly;
   display: grid;
   grid-template-columns: repeat(auto-fit, max(22rem));
+  padding: 2rem 0;
+  row-gap: 2rem;
 }
 
 .form {
