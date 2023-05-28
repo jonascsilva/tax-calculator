@@ -46,7 +46,6 @@ pnpm install
 
 Depois execute o seguinte comando na pasta raiz:
 
-
 ```bash
 pnpm dev
 ```
