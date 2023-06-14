@@ -9,7 +9,7 @@ import { number, object, NumberSchema } from 'yup'
 
 import FormButton from '@/components/form-button'
 import FormField from '@/components/form-field'
-import { FormDataSimple, Range, ResultSimple } from '@/utils/types'
+import { FormData, Bracket, Result, RawBracket } from '@/utils/types'
 
 import Table from './_table'
 import styles from './styles.module.scss'
@@ -25,24 +25,26 @@ const schema = object({
 } as { revenue: NumberSchema; annualRevenue: NumberSchema }).required()
 
 export default function Component() {
-  const [result, setResult] = useState<ResultSimple | null>(null)
+  const [result, setResult] = useState<Result | null>(null)
   const { theme } = useTheme()
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting }
-  } = useForm<FormDataSimple>({ resolver: yupResolver(schema) })
+  } = useForm<FormData>({ resolver: yupResolver(schema) })
 
-  const onSubmit = async ({ annualRevenue, revenue }: FormDataSimple) => {
-    const response = await fetch('https://tax-calculator-q87ez1c2q58g.deno.dev/teste')
+  const onSubmit = async ({ annualRevenue, revenue }: FormData) => {
+    const response = await fetch('https://tax-calculator-q87ez1c2q58g.deno.dev/teste', { cache: 'no-cache' })
 
-    const ranges: Range[] = await response.json()
+    const rawBrackets: RawBracket[] = await response.json()
 
-    const range = ranges.find(({ rBT12 }) => annualRevenue < rBT12 + 1)
+    const rawBracket = rawBrackets.find(({ rBT12 }) => annualRevenue < rBT12 + 1)
 
-    if (!range) throw new Error('rBT12 is outside of any range')
+    if (!rawBracket) throw new Error('rBT12 is outside of any range')
 
-    const { nominalRate, deduction, rangeIndex } = range
+    const bracket: Bracket = { ...rawBracket, index: rawBracket.rangeIndex }
+
+    const { nominalRate, deduction, index } = bracket
 
     const effectiveRate = ((annualRevenue * nominalRate) / 100 - deduction) / annualRevenue
 
@@ -51,14 +53,14 @@ export default function Component() {
       nominalRate,
       deduction,
       effectiveRate,
-      rangeIndex,
+      index,
       tax: effectiveRate * revenue,
-      IRPJ: effectiveRate * range['IRPJ'],
-      CSLL: effectiveRate * range['CSLL'],
-      COFINS: effectiveRate * range['COFINS'],
-      CPP: effectiveRate * range['CPP'],
-      PIS: effectiveRate * range['PIS'],
-      ICMS: effectiveRate * range['ICMS']
+      IRPJ: effectiveRate * bracket['IRPJ'],
+      CSLL: effectiveRate * bracket['CSLL'],
+      COFINS: effectiveRate * bracket['COFINS'],
+      CPP: effectiveRate * bracket['CPP'],
+      PIS: effectiveRate * bracket['PIS'],
+      ICMS: effectiveRate * bracket['ICMS']
     }
 
     setResult(newResult)

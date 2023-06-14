@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { useSelectedLayoutSegments } from 'next/navigation'
 
 import ThemeButton from '@/components/theme-button'
-import { capitalizeFirstLetter as cFL } from '@/utils/functions'
 
 import styles from './styles.module.scss'
 
@@ -16,18 +15,23 @@ export default function Component() {
       <nav className={styles.nav}>
         <ButtonLink segment={segments[0]} routeName={'calculator'} />
         <ThemeButton />
-        <ButtonLink segment={segments[0]} routeName={'reference'} />
+        <ButtonLink segment={segments[0]} routeName={'brackets'} />
       </nav>
     </header>
   )
 }
 
-function ButtonLink({ segment, routeName }: { segment: string; routeName: string }) {
+const names = {
+  calculator: 'Calculadora',
+  brackets: 'Faixas'
+}
+
+function ButtonLink({ segment, routeName }: { segment: string; routeName: keyof typeof names }) {
   const isActive = segment === routeName
 
   return (
     <button className={[styles.button, isActive ? styles.active : undefined].join(' ')} disabled={isActive}>
-      <Link href={`/${routeName}`}>{cFL(routeName)}</Link>
+      <Link href={`/${routeName}`}>{names[routeName]}</Link>
     </button>
   )
 }

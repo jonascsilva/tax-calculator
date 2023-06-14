@@ -1,14 +1,14 @@
-import { ResultSimple } from '@/utils/types'
+import { Result } from '@/utils/types'
 
 import styles from './styles.module.scss'
 
-export default function Component({ result }: { result: ResultSimple }) {
+export default function Component({ result }: { result: Result }) {
   return (
     <table className={styles.root}>
       <tbody>
         <tr>
           <td>Faixa</td>
-          <td>{result.rangeIndex}</td>
+          <td>{result.index}</td>
         </tr>
         <tr>
           <td>Aliquota Nominal</td>

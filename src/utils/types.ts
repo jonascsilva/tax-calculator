@@ -1,5 +1,4 @@
 type Taxes = {
-  rangeIndex: 1 | 2 | 3 | 4 | 5 | 6
   nominalRate: number
   deduction: number
   IRPJ: number
@@ -10,31 +9,24 @@ type Taxes = {
   ICMS: number
 }
 
-export type Range = {
+export type RawBracket = {
   rBT12: number
+  rangeIndex: 1 | 2 | 3 | 4 | 5 | 6
 } & Taxes
 
-export type ResultSimple = {
+export type Bracket = {
+  rBT12: number
+  index: 1 | 2 | 3 | 4 | 5 | 6
+} & Taxes
+
+export type Result = {
   revenue: number
   effectiveRate: number
   tax: number
+  index: 1 | 2 | 3 | 4 | 5 | 6
 } & Taxes
 
-export type FormDataSimple = {
+export type FormData = {
   annualRevenue: number
-  revenue: number
-}
-
-export type FormDataComplex = {
-  revenue: number
-  cost: number
-}
-
-export type ResultComplex = {
-  ICMS: number
-  PIS: number
-  COFINS: number
-  CSLL: number
-  IRPJ: number
   revenue: number
 }
