@@ -3,8 +3,7 @@
 import Link from 'next/link'
 import { useSelectedLayoutSegments } from 'next/navigation'
 
-import ThemeButton from '@/components/theme-button'
-
+import ThemeButton from './_theme-button'
 import styles from './styles.module.scss'
 
 export default function Component() {

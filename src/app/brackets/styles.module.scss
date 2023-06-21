@@ -1,21 +1,35 @@
 .root {
-  padding: 2rem;
+  padding: 4rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, min(100%, 40rem));
   justify-content: center;
-  gap: 4rem;
+  gap: 6rem;
   font-size: 1.3rem;
-  height: 100%;
   overflow-y: auto;
 
-  tbody:before {
-    content: '';
-    display: block;
-    height: 1rem;
-    visibility: hidden;
-  }
+  div {
+    position: relative;
 
-  td:last-child {
-    text-align: right;
+    table {
+      width: 100%;
+      height: 100%;
+
+      tbody {
+        &:before {
+          content: '';
+          display: block;
+          height: 1rem;
+          visibility: hidden;
+        }
+      }
+
+      td {
+        height: 2.6rem;
+      }
+
+      td:last-child {
+        text-align: right;
+      }
+    }
   }
 }

@@ -1,6 +1,6 @@
-import { Bracket, RawBracket } from '@/utils/types'
+import { Bracket } from '@/utils/types'
 
-import Table from './_table'
+import Tables from './_tables'
 import styles from './styles.module.scss'
 
 async function getBrackets(): Promise<Bracket[]> {
@@ -10,9 +10,7 @@ async function getBrackets(): Promise<Bracket[]> {
     throw new Error('Failed to fetch data')
   }
 
-  const rawBrackets: RawBracket[] = await res.json()
-
-  const brackets: Bracket[] = rawBrackets.map(rawBracket => ({ ...rawBracket, index: rawBracket.rangeIndex }))
+  const brackets: Bracket[] = await res.json()
 
   return brackets
 }
@@ -22,9 +20,7 @@ export default async function Page() {
 
   return (
     <main className={styles.root}>
-      {brackets.map(bracket => (
-        <Table bracket={bracket} key={bracket.index} />
-      ))}
+      <Tables brackets={brackets} />
     </main>
   )
 }

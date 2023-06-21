@@ -1,0 +1,44 @@
+@use '@/styles/variables' as vars;
+
+.root {
+  button {
+    border-radius: 0.4rem;
+    border: none;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 0.8rem;
+    cursor: pointer;
+    top: 0;
+    position: absolute;
+    background-color: rgb(167, 19, 19);
+    color: white;
+
+    &:nth-child(1) {
+      left: 0rem;
+    }
+
+    &:nth-child(2) {
+      right: 0rem;
+    }
+
+    &:nth-child(3) {
+      right: 6rem;
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  input {
+    padding: 0.3rem 0.6rem;
+    border: none;
+    border-radius: 0.4rem;
+    background-color: vars.$gray-1;
+    font-size: 1rem;
+    text-align: center;
+    width: 8rem;
+  }
+}

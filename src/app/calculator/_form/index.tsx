@@ -7,10 +7,10 @@ import { useForm } from 'react-hook-form'
 import MoonLoader from 'react-spinners/MoonLoader'
 import { number, object, NumberSchema } from 'yup'
 
-import FormButton from '@/components/form-button'
-import FormField from '@/components/form-field'
-import { FormData, Bracket, Result, RawBracket } from '@/utils/types'
+import { FormData, Bracket, Result } from '@/utils/types'
 
+import FormButton from './_form-button'
+import FormField from './_form-field'
 import Table from './_table'
 import styles from './styles.module.scss'
 
@@ -36,24 +36,23 @@ export default function Component() {
   const onSubmit = async ({ annualRevenue, revenue }: FormData) => {
     const response = await fetch('https://tax-calculator-q87ez1c2q58g.deno.dev/teste', { cache: 'no-cache' })
 
-    const rawBrackets: RawBracket[] = await response.json()
+    const brackets: Bracket[] = await response.json()
 
-    const rawBracket = rawBrackets.find(({ rBT12 }) => annualRevenue < rBT12 + 1)
+    const bracket = brackets.find(({ rBT12 }) => annualRevenue < rBT12 + 1)
+    const index = brackets.findIndex(({ rBT12 }) => annualRevenue < rBT12 + 1)
 
-    if (!rawBracket) throw new Error('rBT12 is outside of any range')
+    if (!bracket) throw new Error('rBT12 is outside of any range')
 
-    const bracket: Bracket = { ...rawBracket, index: rawBracket.rangeIndex }
-
-    const { nominalRate, deduction, index } = bracket
+    const { nominalRate, deduction } = bracket
 
     const effectiveRate = ((annualRevenue * nominalRate) / 100 - deduction) / annualRevenue
 
     const newResult = {
+      index,
       revenue,
       nominalRate,
       deduction,
       effectiveRate,
-      index,
       tax: effectiveRate * revenue,
       IRPJ: effectiveRate * bracket['IRPJ'],
       CSLL: effectiveRate * bracket['CSLL'],

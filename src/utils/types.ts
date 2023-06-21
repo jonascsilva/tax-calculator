@@ -9,21 +9,15 @@ type Taxes = {
   ICMS: number
 }
 
-export type RawBracket = {
-  rBT12: number
-  rangeIndex: 1 | 2 | 3 | 4 | 5 | 6
-} & Taxes
-
 export type Bracket = {
   rBT12: number
-  index: 1 | 2 | 3 | 4 | 5 | 6
 } & Taxes
 
 export type Result = {
   revenue: number
   effectiveRate: number
   tax: number
-  index: 1 | 2 | 3 | 4 | 5 | 6
+  index: number
 } & Taxes
 
 export type FormData = {
