@@ -4,7 +4,7 @@ import Tables from './_tables'
 import styles from './styles.module.scss'
 
 async function getBrackets(): Promise<Bracket[]> {
-  const res = await fetch('https://tax-calculator-q87ez1c2q58g.deno.dev/teste')
+  const res = await fetch('http://localhost:3000/api/brackets')
 
   if (!res.ok) {
     throw new Error('Failed to fetch data')

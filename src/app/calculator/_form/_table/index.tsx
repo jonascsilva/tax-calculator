@@ -12,7 +12,7 @@ export default function Component({ result }: { result: Result }) {
         </tr>
         <tr>
           <td>Aliquota Nominal</td>
-          <td>{result.nominalRate}%</td>
+          <td>{result.nominalrate}%</td>
         </tr>
         <tr>
           <td>Dedução</td>
@@ -24,27 +24,27 @@ export default function Component({ result }: { result: Result }) {
         </tr>
         <tr>
           <td>IRPJ</td>
-          <td>{result['IRPJ'].toFixed(2)}%</td>
+          <td>{result.irpj.toFixed(2)}%</td>
         </tr>
         <tr>
           <td>CSLL</td>
-          <td>{result['CSLL'].toFixed(2)}%</td>
+          <td>{result.csll.toFixed(2)}%</td>
         </tr>
         <tr>
           <td>COFINS</td>
-          <td>{result['COFINS'].toFixed(2)}%</td>
+          <td>{result.cofins.toFixed(2)}%</td>
         </tr>
         <tr>
           <td>CPP</td>
-          <td>{result['CPP'].toFixed(2)}%</td>
+          <td>{result.cpp.toFixed(2)}%</td>
         </tr>
         <tr>
           <td>PIS</td>
-          <td>{result['PIS'].toFixed(2)}%</td>
+          <td>{result.pis.toFixed(2)}%</td>
         </tr>
         <tr>
           <td>ICMS</td>
-          <td>{result['ICMS'].toFixed(2)}%</td>
+          <td>{result.icms.toFixed(2)}%</td>
         </tr>
         <tr>
           <td>Imposto a pagar</td>

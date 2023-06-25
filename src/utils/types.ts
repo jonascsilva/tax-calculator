@@ -1,16 +1,16 @@
 type Taxes = {
-  nominalRate: number
+  nominalrate: number
   deduction: number
-  IRPJ: number
-  CSLL: number
-  COFINS: number
-  PIS: number
-  CPP: number
-  ICMS: number
+  irpj: number
+  csll: number
+  cofins: number
+  pis: number
+  cpp: number
+  icms: number
 }
 
 export type Bracket = {
-  rBT12: number
+  rbt12: number
 } & Taxes
 
 export type Result = {

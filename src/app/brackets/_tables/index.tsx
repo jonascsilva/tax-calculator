@@ -26,7 +26,7 @@ export default function Component(props: { brackets: Bracket[] }) {
     setBrackets(newBrackets)
   }
 
-  const sortedBrackets = brackets.sort(({ rBT12: a }, { rBT12: b }) => a - b)
+  const sortedBrackets = brackets.sort(({ rbt12: a }, { rbt12: b }) => a - b)
 
   return (
     <>
@@ -36,7 +36,7 @@ export default function Component(props: { brackets: Bracket[] }) {
           deleteBracket={deleteBracket}
           updateBracket={updateBracket}
           duplicateBracket={duplicateBracket}
-          key={`${bracket.rBT12}-${index}`}
+          key={`${bracket.rbt12}-${index}`}
           index={index}
         />
       ))}

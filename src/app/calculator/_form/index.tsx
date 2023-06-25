@@ -34,32 +34,32 @@ export default function Component() {
   } = useForm<FormData>({ resolver: yupResolver(schema) })
 
   const onSubmit = async ({ annualRevenue, revenue }: FormData) => {
-    const response = await fetch('https://tax-calculator-q87ez1c2q58g.deno.dev/teste', { cache: 'no-cache' })
+    const response = await fetch('http://localhost:3000/api/brackets', { cache: 'no-cache' })
 
     const brackets: Bracket[] = await response.json()
 
-    const bracket = brackets.find(({ rBT12 }) => annualRevenue < rBT12 + 1)
-    const index = brackets.findIndex(({ rBT12 }) => annualRevenue < rBT12 + 1)
+    const bracket = brackets.find(({ rbt12 }) => annualRevenue < rbt12 + 1)
+    const index = brackets.findIndex(({ rbt12 }) => annualRevenue < rbt12 + 1)
 
-    if (!bracket) throw new Error('rBT12 is outside of any range')
+    if (!bracket) throw new Error('rbt12 is outside of any range')
 
-    const { nominalRate, deduction } = bracket
+    const { nominalrate, deduction, irpj, csll, cofins, cpp, pis, icms } = bracket
 
-    const effectiveRate = ((annualRevenue * nominalRate) / 100 - deduction) / annualRevenue
+    const effectiveRate = ((annualRevenue * nominalrate) / 100 / 100 - deduction) / annualRevenue
 
     const newResult = {
-      index,
+      index: index + 1,
       revenue,
-      nominalRate,
+      nominalrate: nominalrate / 100,
       deduction,
       effectiveRate,
       tax: effectiveRate * revenue,
-      IRPJ: effectiveRate * bracket['IRPJ'],
-      CSLL: effectiveRate * bracket['CSLL'],
-      COFINS: effectiveRate * bracket['COFINS'],
-      CPP: effectiveRate * bracket['CPP'],
-      PIS: effectiveRate * bracket['PIS'],
-      ICMS: effectiveRate * bracket['ICMS']
+      irpj: effectiveRate * (irpj / 100),
+      csll: effectiveRate * (csll / 100),
+      cofins: effectiveRate * (cofins / 100),
+      cpp: effectiveRate * (cpp / 100),
+      pis: effectiveRate * (pis / 100),
+      icms: effectiveRate * (icms / 100)
     }
 
     setResult(newResult)
