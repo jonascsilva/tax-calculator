@@ -13,7 +13,7 @@ export default function Component({
 }: {
   index: number
   bracket: Bracket
-  deleteBracket: (index: number) => void
+  deleteBracket: (id: string) => void
   updateBracket: (bracket: Bracket, index: number) => void
   duplicateBracket: (bracket: Bracket) => void
 }) {
@@ -24,15 +24,16 @@ export default function Component({
     const data = new FormData(event.currentTarget)
 
     const newBracket: Bracket = {
+      id: bracket.id,
       rbt12: +data.get('rbt12')!,
-      pis: +data.get('pis')!,
-      nominalrate: +data.get('nominalrate')!,
-      irpj: +data.get('irpj')!,
-      icms: +data.get('icms')!,
       deduction: +data.get('deduction')!,
-      csll: +data.get('csll')!,
-      cpp: +data.get('cpp')!,
-      cofins: +data.get('cofins')!
+      nominalrate: +data.get('nominalrate')! * 100,
+      pis: +data.get('pis')! * 100,
+      irpj: +data.get('irpj')! * 100,
+      icms: +data.get('icms')! * 100,
+      csll: +data.get('csll')! * 100,
+      cpp: +data.get('cpp')! * 100,
+      cofins: +data.get('cofins')! * 100
     }
 
     updateBracket(newBracket, index)
@@ -47,7 +48,7 @@ export default function Component({
         </button>
         {isEditing && <button type='submit'>Salvar</button>}
         {!isEditing && (
-          <button type='button' onClick={() => deleteBracket(index)}>
+          <button type='button' onClick={() => deleteBracket(bracket.id)}>
             Deletar
           </button>
         )}

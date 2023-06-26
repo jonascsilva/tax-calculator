@@ -1,18 +1,15 @@
+import postgres from 'postgres'
+
 import { Bracket } from '@/utils/types'
 
 import Tables from './_tables'
 import styles from './styles.module.scss'
 
 async function getBrackets(): Promise<Bracket[]> {
-  const res = await fetch('http://localhost:3000/api/brackets')
+  const sql = postgres(process.env.DATABASE_URL!, { ssl: 'require' })
+  const result = await sql<Bracket[]>`SELECT * FROM simples_nacional`
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
-
-  const brackets: Bracket[] = await res.json()
-
-  return brackets
+  return result
 }
 
 export default async function Page() {

@@ -10,6 +10,7 @@ type Taxes = {
 }
 
 export type Bracket = {
+  id: string
   rbt12: number
 } & Taxes
 

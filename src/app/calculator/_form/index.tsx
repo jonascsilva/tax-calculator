@@ -34,9 +34,11 @@ export default function Component() {
   } = useForm<FormData>({ resolver: yupResolver(schema) })
 
   const onSubmit = async ({ annualRevenue, revenue }: FormData) => {
-    const response = await fetch('http://localhost:3000/api/brackets', { cache: 'no-cache' })
+    const response = await fetch(`/api/brackets`, { cache: 'no-store' })
 
     const brackets: Bracket[] = await response.json()
+
+    brackets.sort(({ rbt12: a }, { rbt12: b }) => a - b)
 
     const bracket = brackets.find(({ rbt12 }) => annualRevenue < rbt12 + 1)
     const index = brackets.findIndex(({ rbt12 }) => annualRevenue < rbt12 + 1)
