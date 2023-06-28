@@ -26,7 +26,7 @@ const schema = object({
 
 export default function Component() {
   const [result, setResult] = useState<Result | null>(null)
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
   const {
     register,
     handleSubmit,
@@ -91,7 +91,7 @@ export default function Component() {
           {result && <Table result={result} />}
         </>
       ) : (
-        <MoonLoader speedMultiplier={0.7} size={100} color={theme === 'dark' ? 'white' : 'black'} />
+        <MoonLoader speedMultiplier={0.7} size={100} color={resolvedTheme === 'dark' ? 'white' : 'black'} />
       )}
     </main>
   )

@@ -8,7 +8,7 @@ import styles from './styles.module.scss'
 
 export default function Component() {
   const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
 
   useEffect(() => {
     setMounted(true)
@@ -17,11 +17,11 @@ export default function Component() {
   return (
     <button
       disabled={!mounted}
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
       className={styles.root}
       aria-label={'Change theme'}
     >
-      {mounted ? theme === 'dark' ? <MdLightMode size='100%' /> : <MdDarkMode size='100%' /> : null}
+      {mounted ? resolvedTheme === 'dark' ? <MdLightMode size='100%' /> : <MdDarkMode size='100%' /> : null}
     </button>
   )
 }
