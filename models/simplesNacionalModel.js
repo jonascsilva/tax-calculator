@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('<sua instância do Sequelize>');
+const sequelize = require('../config/db.js');
 
 class SimplesNacional extends Model {}
 
