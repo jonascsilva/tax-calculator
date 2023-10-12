@@ -55,6 +55,12 @@
 
 @media screen and (max-width: 580px) {
   .button {
-  font-size: 0.85rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .button {
+    font-size: 0.7rem;
   }
 }

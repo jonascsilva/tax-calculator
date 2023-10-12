@@ -1,8 +1,15 @@
 .root {
-  border-spacing: 1rem;
+  border-spacing: 2rem;
   width: 20rem;
 
   td:nth-child(2) {
     text-align: right;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .root {
+    border-spacing: 1rem;
+    width: 17.5rem;
   }
 }
