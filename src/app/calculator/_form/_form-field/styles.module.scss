@@ -22,3 +22,15 @@
   font-size: 0.85rem;
   color: rgb(206, 20, 20);
 }
+
+@media screen and (max-width: 580px) {
+  .root {
+  font-size: 1.2rem;
+  }
+  .input{
+  font-size: 1.2rem;
+  }
+  .error{
+  font-size: 1.2rem;
+  }
+}
