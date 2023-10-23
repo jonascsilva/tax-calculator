@@ -21,6 +21,7 @@
     "react-icons": "^4.8.0",
     "react-spinners": "^0.13.8",
     "typescript": "5.0.2",
+    "xlsx": "^0.18.5",
     "yup": "^1.0.2"
   },
   "devDependencies": {
