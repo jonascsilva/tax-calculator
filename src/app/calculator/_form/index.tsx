@@ -1,5 +1,6 @@
 'use client'
 
+import * as XLSX from 'xlsx';
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useTheme } from 'next-themes'
 import { useState } from 'react'
@@ -67,6 +68,15 @@ export default function Component() {
     setResult(newResult)
   }
 
+  const handleDownload = () => {
+    if (result) {
+      const ws = XLSX.utils.json_to_sheet([result]);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Resultado');
+      XLSX.writeFile(wb, 'result.xlsx');
+    }
+  };
+
   return (
     <main className={styles.root}>
       {!isSubmitting ? (
@@ -89,10 +99,15 @@ export default function Component() {
             <FormButton />
           </form>
           {result && <Table result={result} />}
+          {result && (
+            <button onClick={handleDownload} className={styles.downloadButton}>
+              Baixar Resultado
+            </button>
+          )}
         </>
       ) : (
         <MoonLoader speedMultiplier={0.7} size={100} color={resolvedTheme === 'dark' ? 'white' : 'black'} />
       )}
     </main>
-  )
+  );
 }
