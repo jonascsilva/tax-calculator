@@ -103,13 +103,13 @@ export default function Component() {
               register={register}
             />
             <FormButton />
-          </form>
-          {result && <Table result={result} />}
-          {result && (
-            <button onClick={handleDownload} className={styles.downloadButton}>
-              Baixar Resultado
+            {result && (
+            <button  onClick={handleDownload} className={styles.button}>
+              Exportar
             </button>
           )}
+          </form>
+          {result && <Table result={result} />}
         </>
       ) : (
         <MoonLoader speedMultiplier={0.7} size={100} color={resolvedTheme === 'dark' ? 'white' : 'black'} />
