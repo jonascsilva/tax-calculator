@@ -73,10 +73,16 @@ export default function Component() {
       const ws = XLSX.utils.json_to_sheet([result]);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, 'Resultado');
-      XLSX.writeFile(wb, 'result.xlsx');
+      
+      const now = new Date();
+      const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+      const month = monthNames[now.getMonth()];
+      
+      const fileName = `result_${month}.xlsx`;
+      XLSX.writeFile(wb, fileName);
     }
   };
-
+  
   return (
     <main className={styles.root}>
       {!isSubmitting ? (
