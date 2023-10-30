@@ -1,5 +1,5 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/db.js');
+const { Model, DataTypes } = require('sequelize')
+const sequelize = require('../config/db.js')
 
 class SimplesNacional extends Model {}
 
@@ -8,51 +8,51 @@ SimplesNacional.init(
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
-      allowNull: false,
+      allowNull: false
     },
     rbt12: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     nominalrate: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     deduction: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     irpj: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     csll: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     cofins: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     pis: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     cpp: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
     icms: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   },
   {
     sequelize,
     modelName: 'SimplesNacional',
     tableName: 'simples_nacional',
-    timestamps: false,
+    timestamps: false
   }
-);
+)
 
-module.exports = SimplesNacional;
+module.exports = SimplesNacional

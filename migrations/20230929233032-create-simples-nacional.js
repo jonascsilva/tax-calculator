@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -6,48 +6,48 @@ module.exports = {
       id: {
         type: Sequelize.UUID,
         allowNull: false,
-        primaryKey: true,
+        primaryKey: true
       },
       rbt12: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
       nominalrate: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
       deduction: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
       irpj: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
       csll: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
       cofins: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
       pis: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
       cpp: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
       icms: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-    });
+        allowNull: false
+      }
+    })
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('simples_nacional');
-  },
-};
+    await queryInterface.dropTable('simples_nacional')
+  }
+}

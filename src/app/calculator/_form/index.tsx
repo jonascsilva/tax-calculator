@@ -1,11 +1,11 @@
 'use client'
 
-import * as XLSX from 'xlsx';
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useTheme } from 'next-themes'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import MoonLoader from 'react-spinners/MoonLoader'
+import * as XLSX from 'xlsx'
 import { number, object, NumberSchema } from 'yup'
 
 import { FormData, Bracket, Result } from '@/utils/types'
@@ -81,19 +81,32 @@ export default function Component() {
 
   const handleDownload = () => {
     if (result) {
-      const ws = XLSX.utils.json_to_sheet([result]);
-      const wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Resultado');
-      
-      const now = new Date();
-      const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-      const month = monthNames[now.getMonth()];
-      
-      const fileName = `result_${month}.xlsx`;
-      XLSX.writeFile(wb, fileName);
+      const ws = XLSX.utils.json_to_sheet([result])
+      const wb = XLSX.utils.book_new()
+      XLSX.utils.book_append_sheet(wb, ws, 'Resultado')
+
+      const now = new Date()
+      const monthNames = [
+        'Janeiro',
+        'Fevereiro',
+        'Março',
+        'Abril',
+        'Maio',
+        'Junho',
+        'Julho',
+        'Agosto',
+        'Setembro',
+        'Outubro',
+        'Novembro',
+        'Dezembro'
+      ]
+      const month = monthNames[now.getMonth()]
+
+      const fileName = `result_${month}.xlsx`
+      XLSX.writeFile(wb, fileName)
     }
-  };
-  
+  }
+
   return (
     <main className={styles.root}>
       {!isSubmitting ? (
@@ -115,10 +128,10 @@ export default function Component() {
             />
             <FormButton />
             {result && (
-            <button  onClick={handleDownload} className={styles.button}>
-              Exportar
-            </button>
-          )}
+              <button onClick={handleDownload} className={styles.button}>
+                Exportar
+              </button>
+            )}
           </form>
           {result && <Table result={result} />}
         </>
@@ -126,5 +139,5 @@ export default function Component() {
         <MoonLoader speedMultiplier={0.7} size={100} color={resolvedTheme === 'dark' ? 'white' : 'black'} />
       )}
     </main>
-  );
+  )
 }
