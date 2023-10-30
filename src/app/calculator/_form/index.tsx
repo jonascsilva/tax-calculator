@@ -22,7 +22,7 @@ const numberSchema = number()
 const schema = object({
   revenue: numberSchema,
   annualRevenue: numberSchema
-} as { revenue: NumberSchema; annualRevenue: NumberSchema }).required()
+}).required()
 
 export default function Component() {
   const [result, setResult] = useState<Result | null>(null)
@@ -31,40 +31,51 @@ export default function Component() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting }
-  } = useForm<FormData>({ resolver: yupResolver(schema) })
+  } = useForm<FormData>({
+    resolver: yupResolver(schema)
+  })
 
   const onSubmit = async ({ annualRevenue, revenue }: FormData) => {
-    const response = await fetch(`/api/brackets`, { cache: 'no-store' })
+    try {
+      const response = await fetch(`/api/brackets`, { cache: 'no-store' })
+      if (!response.ok) {
+        throw new Error('Erro na solicitação da API')
+      }
 
-    const brackets: Bracket[] = await response.json()
+      const brackets: Bracket[] = await response.json()
 
-    brackets.sort(({ rbt12: a }, { rbt12: b }) => a - b)
+      brackets.sort(({ rbt12: a }, { rbt12: b }) => a - b)
 
-    const bracket = brackets.find(({ rbt12 }) => annualRevenue < rbt12 + 1)
-    const index = brackets.findIndex(({ rbt12 }) => annualRevenue < rbt12 + 1)
+      const bracket = brackets.find(({ rbt12 }) => annualRevenue < rbt12 + 1)
+      const index = brackets.findIndex(({ rbt12 }) => annualRevenue < rbt12 + 1)
 
-    if (!bracket) throw new Error('rbt12 is outside of any range')
+      if (!bracket) {
+        throw new Error('rbt12 está fora de qualquer intervalo')
+      }
 
-    const { nominalrate, deduction, irpj, csll, cofins, cpp, pis, icms } = bracket
+      const { nominalrate, deduction, irpj, csll, cofins, cpp, pis, icms } = bracket
 
-    const effectiveRate = ((annualRevenue * nominalrate) / 100 / 100 - deduction) / annualRevenue
+      const effectiveRate = ((annualRevenue * nominalrate) / 100 / 100 - deduction) / annualRevenue
 
-    const newResult = {
-      index: index + 1,
-      revenue,
-      nominalrate: nominalrate / 100,
-      deduction,
-      effectiveRate,
-      tax: effectiveRate * revenue,
-      irpj: effectiveRate * (irpj / 100),
-      csll: effectiveRate * (csll / 100),
-      cofins: effectiveRate * (cofins / 100),
-      cpp: effectiveRate * (cpp / 100),
-      pis: effectiveRate * (pis / 100),
-      icms: effectiveRate * (icms / 100)
+      const newResult = {
+        index: index + 1,
+        revenue,
+        nominalrate: nominalrate / 100,
+        deduction,
+        effectiveRate,
+        tax: effectiveRate * revenue,
+        irpj: effectiveRate * (irpj / 100),
+        csll: effectiveRate * (csll / 100),
+        cofins: effectiveRate * (cofins / 100),
+        cpp: effectiveRate * (cpp / 100),
+        pis: effectiveRate * (pis / 100),
+        icms: effectiveRate * (icms / 100)
+      }
+
+      setResult(newResult)
+    } catch (error) {
+      console.error('Erro:', error)
     }
-
-    setResult(newResult)
   }
 
   return (
