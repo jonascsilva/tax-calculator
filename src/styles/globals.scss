@@ -9,6 +9,11 @@
 body {
   display: flex;
   flex-direction: column;
-  height: 100vh;
   background-color: var.$background-color;
+}
+
+@media screen and (min-width: 960px) {
+  body {
+    height: 100vh;
+  }
 }
